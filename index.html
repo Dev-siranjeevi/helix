@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!--
+      CSP notes:
+      - blob: in img-src and connect-src is required for pdf-lib's URL.createObjectURL
+        download flow in the packaged app (file:// origin).
+      - Google Fonts: fonts.googleapis.com in style-src and fonts.gstatic.com in
+        font-src are needed in dev (http://localhost). In the packaged app these
+        requests will silently fail on offline machines — the app falls back to
+        system fonts gracefully.
+      - 'unsafe-eval' is NOT included — no dynamic eval anywhere in the codebase.
+    -->
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' data: https://fonts.gstatic.com; connect-src 'self' https://fonts.googleapis.com https://fonts.gstatic.com; img-src 'self' data: blob:; worker-src blob:;"
+    />
+    <title>Helix</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
+</html>

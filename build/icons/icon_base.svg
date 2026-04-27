@@ -1,0 +1,51 @@
+<svg width="1024" height="1024" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="gB1" x1="40" y1="40" x2="160" y2="160" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#4fffb0"/>
+      <stop offset="60%" stop-color="#3d8bff"/>
+      <stop offset="100%" stop-color="#4fffb0" stop-opacity="0.3"/>
+    </linearGradient>
+    <linearGradient id="gB2" x1="160" y1="40" x2="40" y2="160" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#3d8bff" stop-opacity="0.5"/>
+      <stop offset="100%" stop-color="#4fffb0"/>
+    </linearGradient>
+    <clipPath id="rc"><rect width="200" height="200" rx="46"/></clipPath>
+  </defs>
+
+  <rect width="200" height="200" rx="46" fill="#080b12"/>
+
+  <g clip-path="url(#rc)">
+    <!-- face fills -->
+    <polygon points="100,22 178,80 178,120 100,100" fill="url(#gB1)" fill-opacity="0.18"/>
+    <polygon points="100,22 22,80 22,120 100,100"   fill="url(#gB2)" fill-opacity="0.12"/>
+    <polygon points="100,178 178,120 100,100 22,120" fill="url(#gB1)" fill-opacity="0.14"/>
+
+    <!-- outer edges -->
+    <line x1="100" y1="22"  x2="178" y2="80"  stroke="#4fffb0" strokeWidth="2"   stroke-opacity="0.85"/>
+    <line x1="100" y1="22"  x2="22"  y2="80"  stroke="#3d8bff" strokeWidth="2"   stroke-opacity="0.85"/>
+    <line x1="178" y1="80"  x2="178" y2="120" stroke="#4fffb0" strokeWidth="2"   stroke-opacity="0.6"/>
+    <line x1="22"  y1="80"  x2="22"  y2="120" stroke="#3d8bff" strokeWidth="2"   stroke-opacity="0.6"/>
+    <line x1="178" y1="120" x2="100" y2="178" stroke="#4fffb0" strokeWidth="2"   stroke-opacity="0.7"/>
+    <line x1="22"  y1="120" x2="100" y2="178" stroke="#3d8bff" strokeWidth="2"   stroke-opacity="0.7"/>
+
+    <!-- inner spokes to centre -->
+    <line x1="100" y1="22"  x2="100" y2="100" stroke="#4fffb0" strokeWidth="1.5" stroke-opacity="0.4" stroke-dasharray="4 3"/>
+    <line x1="178" y1="80"  x2="100" y2="100" stroke="#4fffb0" strokeWidth="1"   stroke-opacity="0.3"/>
+    <line x1="22"  y1="80"  x2="100" y2="100" stroke="#3d8bff" strokeWidth="1"   stroke-opacity="0.3"/>
+    <line x1="178" y1="120" x2="100" y2="100" stroke="#4fffb0" strokeWidth="1"   stroke-opacity="0.3"/>
+    <line x1="22"  y1="120" x2="100" y2="100" stroke="#3d8bff" strokeWidth="1"   stroke-opacity="0.3"/>
+    <line x1="100" y1="178" x2="100" y2="100" stroke="#3d8bff" strokeWidth="1.5" stroke-opacity="0.4" stroke-dasharray="4 3"/>
+
+    <!-- vertex dots -->
+    <circle cx="100" cy="22"  r="4.5" fill="#4fffb0"/>
+    <circle cx="178" cy="80"  r="3.5" fill="#4fffb0" fill-opacity="0.75"/>
+    <circle cx="22"  cy="80"  r="3.5" fill="#3d8bff" fill-opacity="0.75"/>
+    <circle cx="178" cy="120" r="3.5" fill="#4fffb0" fill-opacity="0.75"/>
+    <circle cx="22"  cy="120" r="3.5" fill="#3d8bff" fill-opacity="0.75"/>
+    <circle cx="100" cy="178" r="4.5" fill="#3d8bff"/>
+
+    <!-- centre node -->
+    <circle cx="100" cy="100" r="10"  stroke="#4fffb0" strokeWidth="1"   stroke-opacity="0.3" fill="none"/>
+    <circle cx="100" cy="100" r="6"   fill="#4fffb0"   fill-opacity="0.9"/>
+  </g>
+</svg>

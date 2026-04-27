@@ -1,0 +1,122 @@
+{
+  "name": "helix-desktop",
+  "version": "1.0.0",
+  "description": "ARINC 424 file monitor — decode, inspect, diff and annotate CIFP procedure files.",
+  "homepage": "https://github.com/Dev-siranjeevi/helix#readme",
+  "bugs": {
+    "url": "https://github.com/Dev-siranjeevi/helix/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Dev-siranjeevi/helix.git"
+  },
+  "license": "ISC",
+  "author": "siranjeevi.m",
+  "type": "commonjs",
+  "main": "electron/main.js",
+  "engines": {
+    "node": ">=20.0.0"
+  },
+  "scripts": {
+    "dev": "concurrently \"npm run dev:vite\" \"npm run dev:electron\"",
+    "dev:vite": "vite",
+    "dev:electron": "wait-on http://localhost:5173 && nodemon --watch electron --ext js,json --ignore dist --exec \"electron .\"",
+    "build": "vite build",
+    "start": "electron .",
+    "dist": "npm run build && electron-builder",
+    "dist:dir": "npm run build && electron-builder --win --dir",
+    "postinstall": "electron-builder install-app-deps",
+    "dist:win": "npm run build && electron-builder --win",
+    "dist:mac": "npm run build && electron-builder --mac",
+    "dist:linux": "npm run build && electron-builder --linux"
+  },
+  "build": {
+    "appId": "com.siranjeevi.helix",
+    "productName": "Helix",
+    "copyright": "Copyright © 2026 siranjeevi.m",
+    "directories": {
+      "buildResources": "build",
+      "output": "release"
+    },
+    "files": [
+      "dist/**/*",
+      "electron/**/*",
+      "build/icons/**/*",
+      "package.json",
+      "!**/node_modules/*/{CHANGELOG.md,README.md,README,readme.md,readme}",
+      "!**/node_modules/*/{test,__tests__,tests,powered-test,example,examples}",
+      "!**/node_modules/.bin"
+    ],
+    "asar": true,
+    "asarUnpack": [
+      "**/node_modules/chokidar/**",
+      "**/node_modules/electron-store/**"
+    ],
+    "compression": "maximum",
+    "publish": {
+      "provider": "github",
+      "releaseType": "release"
+    },
+    "win": {
+      "target": [
+        {
+          "target": "nsis",
+          "arch": ["x64"]
+        }
+      ],
+      "icon": "build/icons/icon.ico",
+      "artifactName": "${productName}-Setup-${version}.${ext}"
+    },
+    "mac": {
+      "target": [
+        {
+          "target": "dmg",
+          "arch": ["x64", "arm64"]
+        }
+      ],
+      "icon": "build/icons/icon_mac_1024.png",
+      "artifactName": "${productName}-${version}-mac.${ext}",
+      "category": "public.app-category.utilities"
+    },
+    "linux": {
+      "target": [
+        {
+          "target": "AppImage",
+          "arch": ["x64"]
+        }
+      ],
+      "icon": "build/icons/icon_linux.png",
+      "artifactName": "${productName}-${version}.${ext}",
+      "category": "Utility"
+    },
+    "nsis": {
+      "oneClick": false,
+      "perMachine": false,
+      "allowToChangeInstallationDirectory": true,
+      "deleteAppDataOnUninstall": false,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true,
+      "shortcutName": "Helix",
+      "installerIcon": "build/icons/icon.ico",
+      "uninstallerIcon": "build/icons/icon.ico"
+    }
+  },
+  "dependencies": {
+    "chokidar": "^3.6.0",
+    "electron-log": "^5.2.0",
+    "electron-store": "^8.2.0",
+    "electron-updater": "^6.3.9",
+    "pdf-lib": "^1.17.1",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-react": "^4.3.4",
+    "concurrently": "^9.1.2",
+    "electron": "^33.3.1",
+    "electron-builder": "^25.1.8",
+    "nodemon": "^3.1.9",
+    "vite": "^6.3.5",
+    "wait-on": "^8.0.1"
+  }
+}

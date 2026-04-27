@@ -1,0 +1,135 @@
+/**
+ * diff-cells.css — diff-specific colour rules.
+ * Uses CSS custom-property fallbacks so dark / light both work.
+ * Design principle: muted row tints, strong text on changed cells only.
+ */
+
+/* ── Row tints ─────────────────────────────────────────────────────────────── */
+.diff-row--changed { background: color-mix(in srgb, var(--warn)   5%, transparent); }
+.diff-row--added   { background: color-mix(in srgb, var(--accent)  6%, transparent); }
+.diff-row--removed { background: color-mix(in srgb, var(--danger)  5%, transparent); }
+
+/* ── Cell-level status colours ────────────────────────────────────────────── */
+.diff-val--same    { color: var(--muted2); }
+.diff-val--changed { color: var(--warn);   }
+.diff-val--added   { color: var(--accent); }
+.diff-val--removed { color: var(--danger); }
+
+/* Changed cell variants used in WP / Navaid / Minima tables */
+.diff-val--changed-a { color: var(--muted);  text-decoration: line-through; }
+.diff-val--changed-b { color: var(--text);   font-weight: 500; }
+.diff-val--added-b   { color: var(--accent); }
+.diff-val--added-a   { color: var(--muted);  }
+.diff-val--removed-a { color: var(--danger); }
+.diff-val--removed-b { color: var(--muted);  }
+
+/* ── Stacked new / old within a single cell ───────────────────────────────── */
+.diff-stack__new,
+.diff-stack__old {
+  display: block;
+  line-height: 1.35;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 100%;
+}
+.diff-stack__new {
+  color: var(--text);
+  font-weight: 500;
+}
+.diff-stack__old {
+  color: var(--muted);
+  font-size: 0.82em;
+  text-decoration: line-through;
+  text-decoration-color: color-mix(in srgb, var(--danger) 60%, transparent);
+}
+
+/* ── Header column labels ─────────────────────────────────────────────────── */
+.diff-th--a { color: var(--muted);  font-weight: 500; }
+.diff-th--b { color: var(--text2);  font-weight: 500; }
+
+/* ── Changed cell highlight border ───────────────────────────────────────── */
+.diff-cell--changed {
+  border-left: 2px solid color-mix(in srgb, var(--warn)   55%, transparent);
+}
+.diff-cell--added {
+  border-left: 2px solid color-mix(in srgb, var(--accent) 60%, transparent);
+  color: var(--accent);
+}
+.diff-cell--removed {
+  border-left: 2px solid color-mix(in srgb, var(--danger) 55%, transparent);
+  color: var(--danger);
+  text-decoration: line-through;
+  text-decoration-color: color-mix(in srgb, var(--danger) 45%, transparent);
+}
+.diff-cell--seq   { color: var(--muted2); font-variant-numeric: tabular-nums; }
+.diff-cell--trans { color: var(--text2);  font-weight: 500; }
+
+/* ── Badge / label primitives ─────────────────────────────────────────────── */
+.diff-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: var(--fs-2xs);
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  padding: 2px 7px;
+  border-radius: var(--radius-sm);
+}
+.diff-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 1px 7px;
+  border-radius: 20px;
+  font-size: var(--fs-2xs);
+  font-weight: 600;
+  letter-spacing: 0.03em;
+}
+.diff-badge--changed { background: color-mix(in srgb, var(--warn)   12%, transparent); color: var(--warn);   }
+.diff-badge--added   { background: color-mix(in srgb, var(--accent) 12%, transparent); color: var(--accent); }
+.diff-badge--removed { background: color-mix(in srgb, var(--danger) 12%, transparent); color: var(--danger); }
+.diff-badge--warn    { background: color-mix(in srgb, var(--warn)   12%, transparent); color: var(--warn);   }
+.diff-badge--info    { background: color-mix(in srgb, var(--muted)  12%, transparent); color: var(--text2);  }
+
+/* ── Table header sub-row ─────────────────────────────────────────────────── */
+.diff-th-row th { background: var(--surface2); font-size: var(--fs-2xs); color: var(--muted); padding: 3px 6px; }
+.diff-th-sub    { font-size: var(--fs-2xs); color: var(--muted); padding: 2px 4px; }
+.diff-th__new   { color: var(--text2);  font-weight: 500; }
+.diff-th__old   { color: var(--muted);  font-weight: 400; }
+
+/* ── "Show same" toggle button ────────────────────────────────────────────── */
+.raw-diff__show-same-btn {
+  display: block;
+  width: 100%;
+  padding: 5px 12px;
+  background: var(--surface);
+  border: none;
+  border-top: 1px solid var(--border);
+  color: var(--text2);
+  font-size: var(--fs-xs);
+  font-family: var(--font-mono);
+  cursor: pointer;
+  text-align: left;
+  transition: background 0.12s;
+}
+.raw-diff__show-same-btn:hover { background: var(--surface2); color: var(--text); }
+
+/* ── Raw diff table ───────────────────────────────────────────────────────── */
+.raw-diff { width: 100%; border-collapse: collapse; font-family: var(--font-mono, monospace); font-size: var(--fs-xs); }
+.raw-diff__lnum { width: 46px; min-width: 46px; padding: 2px 8px; color: var(--muted2); text-align: right; user-select: none; border-right: 1px solid var(--border); }
+.raw-diff__text { padding: 2px 10px; white-space: pre; color: var(--text2); }
+.raw-diff__row--added   .raw-diff__text { background: color-mix(in srgb, var(--accent) 8%, transparent); color: var(--accent); }
+.raw-diff__row--removed .raw-diff__text { background: color-mix(in srgb, var(--danger) 7%, transparent); color: var(--danger); text-decoration: line-through; text-decoration-color: color-mix(in srgb, var(--danger) 40%, transparent); }
+
+/* ── Compare section toggle (show identical rows) ────────────────────────── */
+.compare-toggle-row td {
+  padding: 3px 8px;
+  background: var(--bg2);
+  color: var(--muted);
+  font-size: var(--fs-2xs);
+  text-align: center;
+  cursor: pointer;
+  border-top: 1px dashed var(--border);
+}
+.compare-toggle-row td:hover { color: var(--text2); }
